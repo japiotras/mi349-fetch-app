@@ -83,40 +83,74 @@ function makeExplanation() {
             break;
 
         case "ice":
-            if (weatherCode >= 386)
-                explanationElement.textContent = "The Pokémon's primary type is Electric. The storm suits them.";
+            if (weatherCode == 227 || weatherCode == 230 || (weatherCode >= 317 && weatherCode <= 350) || (weatherCode >= 362 && weatherCode <= 377))
+                explanationElement.textContent = "The Pokémon's primary type is Ice. The cold weather suits them.";
             else
-                explanationElement.textContent = "The Pokémon's primary type is Electric. They might be a bit uncomfortable with the weather.";
+                explanationElement.textContent = "The Pokémon's primary type is Ice. They might be a bit uncomfortable with the weather.";
             break;
 
         case "fighting":
+            explanationElement.textContent = "The Pokémon's primary type is Fighting. They weather doesn't matter as long as they can punch someone.";
             break;
 
         case "poison":
+            explanationElement.textContent = "The Pokémon's primary type is Poison. What does the weather even do to these creatures.";
             break;
 
         case "ground":
+            if (weatherCode < 263)
+                explanationElement.textContent = "The Pokémon's primary type is Ground. The conditions suit them.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Ground. They weather will cause erosion.";
             break;
 
         case "flying":
+            if (!(weatherCode >= 200 && weatherCode <= 230) && !(weatherCode >= 317 && weatherCode <= 350) && !(weatherCode >= 362))
+                explanationElement.textContent = "The Pokémon's primary type is Flying. The conditions suit them.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Flying. They might be a bit uncomfortable with the weather.";
             break;
 
         case "psychic":
+            if (!(weatherCode == 227 || weatherCode == 230 || weatherCode == 305 || weatherCode == 308 || weatherCode == 314 || weatherCode == 320 || (weatherCode >= 329 && weatherCode <= 350) || weatherCode >= 356))
+                explanationElement.textContent = "The Pokémon's primary type is Psychic. The weather is fine for them.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Psychic. They weather could be distracting.";
             break;
 
         case "bug":
+            if (weatherCode < 263)
+                explanationElement.textContent = "The Pokémon's primary type is Bug. The conditions suit them.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Bug. They might be a bit uncomfortable with the weather.";
             break;
 
         case "rock":
+            if (weatherCode < 263)
+                explanationElement.textContent = "The Pokémon's primary type is Rock. The conditions suit them.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Rock. They weather will cause erosion.";
             break;
 
         case "ghost":
+            if (weatherCode == 248 || weatherCode == 260)
+                explanationElement.textContent = "The Pokémon's primary type is Ghost. They're spookier in the fog.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Ghost. Nothing is special about the weather for them.";
             break;
 
         case "dragon":
+            if (!(weatherCode == 227 || weatherCode == 230 || (weatherCode >= 317 && weatherCode <= 350) || (weatherCode >= 362 && weatherCode <= 377)))
+                explanationElement.textContent = "The Pokémon's primary type is Dragon. They're fine with the weather.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Dragon. They are weak to the cold weather!";
             break;
 
         case "dark":
+            if (weatherCode == 122)
+                explanationElement.textContent = "The Pokémon's primary type is Dark. The dark sky matches their type.";
+            else
+                explanationElement.textContent = "The Pokémon's primary type is Dark. They weather is all the same to them.";
             break;
 
         case "steel":
@@ -124,6 +158,7 @@ function makeExplanation() {
             break;
 
         case "fairy":
+            explanationElement.textContent = "The Pokémon's primary type is Fairy. They don't care about the weather, but they might be a bit uncomfortable with it.";
             break;
     }
 }
