@@ -1,12 +1,14 @@
+// Claude Code was used to allow multi-word city and pokémon names to work in API fetches (lines 24 and 41).
+
 // Free API key that I'm not gonna bother making private.
 // It's limited to 100 uses per month, so if it stops working, that's why.
 const weatherstackAPIKey = "e32aa1d771c6e7f113462f45e8fd25d0"
 
 const weatherButton = document.getElementById("weather-button");
-weatherButton.addEventListener("click", getWeatherCode());
+weatherButton.addEventListener("click", getWeatherCode);
 
 const pokemonButton = document.getElementById("pokemon-button");
-pokemonButton.addEventListener("click", getPokemonType());
+pokemonButton.addEventListener("click", getPokemonType);
 
 const weatherElement = document.getElementById("weather-result");
 const pokemonElement = document.getElementById("pokemon-result");
@@ -16,9 +18,12 @@ let weatherCode = 0;
 let pokemonType = "";
 
 async function getWeatherCode() {
-    try {
         const city = document.getElementById("weather-input").value.toLowerCase();
-        const response = await fetch(`https://api.apilayer.net/weatherstack/current?access_key=${weatherstackAPIKey}&query=${city}`);
+
+    try {
+        const response = await fetch(`https://api.apilayer.net/weatherstack/current?access_key=${weatherstackAPIKey}&query=${encodeURIComponent(city)}`);
+        if (!response.ok)
+            throw new Error();
         const data = await response.json();
 
         weatherCode = data.current.weather_code;
@@ -31,9 +36,11 @@ async function getWeatherCode() {
 }
 
 async function getPokemonType() {
+    const pokemon = document.getElementById("pokemon-input").value.toLowerCase();
     try {
-        const pokemon = document.getElementById("pokemon-input").value.toLowerCase();
-        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${pokemon}`);
+        const response = await fetch(`https://pokeapi.co/api/v2/pokemon/${encodeURIComponent(pokemon)}`);
+        if (!response.ok)
+            throw new Error(`HTTP ${response.status}`);
         const data = await response.json();
 
         pokemonType = data.types[0].type.name;
