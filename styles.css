@@ -1,0 +1,13 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    text-align: center;
+}
+
+header a {
+    color: black;
+    text-decoration: none;
+}
+
+#explanation {
+    font-weight: bold;
+}
